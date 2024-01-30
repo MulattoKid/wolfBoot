@@ -147,6 +147,7 @@ void rt1040_init_pins(void)
 }
 #endif
 
+__attribute__ ((section(".image_header"))) uint8_t image_header[IMAGE_HEADER_SIZE];
 
 void main(void)
 {

@@ -1,5 +1,6 @@
 MEMORY
 {
+    FLASH_FW_HEADER (rx) : ORIGIN = 0x60010000, LENGTH = 256
     FLASH (rx) : ORIGIN = @WOLFBOOT_TEST_APP_ADDRESS@, LENGTH = @WOLFBOOT_TEST_APP_SIZE@
     RAM (rwx)  : ORIGIN = 0x20000000, LENGTH = 0x00010000
 }
@@ -8,6 +9,11 @@ SECTIONS
 {
     __NCACHE_REGION_START = ORIGIN(RAM);
     __NCACHE_REGION_SIZE  = 0;
+    .fw_header :
+    {
+        KEEP(*(.image_header))
+    } > FLASH_FW_HEADER
+
     .text :
     {
         _start_text = .;

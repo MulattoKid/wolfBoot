@@ -1,0 +1,26 @@
+{
+    "configurations": [
+        {
+            "name": "wolfBoot",
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "external",
+            "gdbTarget": "localhost:3333",
+            "cwd": "${workspaceFolder}",
+            "executable": "test_signing/wolfboot.elf",
+            "armToolchainPath": "/home/daniel/work/nxp/arm-gnu-toolchain-13.2.Rel1-x86_64-arm-none-eabi/bin",
+            "runToEntryPoint": "main",
+        },
+        {
+            "name": "Test FW image",
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "external",
+            "gdbTarget": "localhost:3333",
+            "cwd": "${workspaceFolder}",
+            "executable": "test_signing/image_with_header_v1_signed.elf",
+            "armToolchainPath": "/home/daniel/work/nxp/arm-gnu-toolchain-13.2.Rel1-x86_64-arm-none-eabi/bin",
+            "runToEntryPoint": "main",
+        },
+    ]
+}

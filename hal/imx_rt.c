@@ -712,6 +712,7 @@ static void clock_init(void)
 
 void uart_init(void)
 {
+    // @TODO: without this the logging didn't work from the bootloader when DEBUG_UART?=1 and PRINTF_ENABLED?=1 were set?
     CLOCK_EnableClock(kCLOCK_Iomuxc); /* iomuxc clock (iomuxc_clk_enable): 0x03U */
     IOMUXC_SetPinMux( /* GPIO_AD_B0_12 is configured as LPUART1_TX */
         IOMUXC_GPIO_AD_B0_12_LPUART1_TX,    0U);

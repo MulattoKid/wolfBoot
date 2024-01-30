@@ -1083,7 +1083,9 @@ static int make_header_ex(int is_diff, uint8_t *pubkey, uint32_t pubkey_sz,
             ret = wc_Sha256Update(&sha, header, header_idx);
 
             /* Hash image file */
+            printf("%s\n", image_file);
             f = fopen(image_file, "rb");
+            // fseek(f, 256, SEEK_CUR);
             pos = 0;
             while (ret == 0 && pos < image_sz) {
                 read_sz = image_sz - pos;
@@ -1100,6 +1102,10 @@ static int make_header_ex(int is_diff, uint8_t *pubkey, uint32_t pubkey_sz,
             fclose(f);
             if (ret == 0)
                 wc_Sha256Final(&sha, digest);
+            // for (int i = 0; i < 48; i++)
+            // {
+            //     printf("%02X ", digest[i]);
+            // }
             wc_Sha256Free(&sha);
         }
         /* pubkey hash calculation */
