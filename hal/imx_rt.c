@@ -704,7 +704,7 @@ static void clock_init(void)
 
 /* The UART interface (LPUART1 - LPUART8) */
 #ifndef UART_BASEADDR
-#define UART_BASEADDR LPUART1
+#define UART_BASEADDR LPUART3
 #endif
 #ifndef UART_BAUDRATE
 #define UART_BAUDRATE (115200U)
@@ -714,14 +714,14 @@ void uart_init(void)
 {
     // @TODO: without this the logging didn't work from the bootloader when DEBUG_UART?=1 and PRINTF_ENABLED?=1 were set?
     CLOCK_EnableClock(kCLOCK_Iomuxc); /* iomuxc clock (iomuxc_clk_enable): 0x03U */
-    IOMUXC_SetPinMux( /* GPIO_AD_B0_12 is configured as LPUART1_TX */
-        IOMUXC_GPIO_AD_B0_12_LPUART1_TX,    0U);
-    IOMUXC_SetPinMux( /* GPIO_AD_B0_13 is configured as LPUART1_RX */
-        IOMUXC_GPIO_AD_B0_13_LPUART1_RX,    0U);
-    IOMUXC_SetPinConfig( /* GPIO_AD_B0_12 PAD functional properties : */
-        IOMUXC_GPIO_AD_B0_12_LPUART1_TX,    0x10B0U);
-    IOMUXC_SetPinConfig( /* GPIO_AD_B0_13 PAD functional properties : */
-        IOMUXC_GPIO_AD_B0_13_LPUART1_RX,    0x10B0U);
+    IOMUXC_SetPinMux( /* GPIO_EMC_13 is configured as LPUART3_TX */
+        IOMUXC_GPIO_EMC_13_LPUART3_TX,    0U);
+    IOMUXC_SetPinMux( /* GPIO_EMC_14 is configured as LPUART3_RX */
+        IOMUXC_GPIO_EMC_14_LPUART3_RX,    0U);
+    IOMUXC_SetPinConfig( /* GPIO_EMC_13 PAD functional properties : */
+        IOMUXC_GPIO_EMC_13_LPUART3_TX,    0x10B0U);
+    IOMUXC_SetPinConfig( /* GPIO_EMC_14 PAD functional properties : */
+        IOMUXC_GPIO_EMC_14_LPUART3_RX,    0x10B0U);
 
     lpuart_config_t config;
     uint32_t uartClkSrcFreq = 20000000U; /* 20 MHz */
